@@ -65,7 +65,8 @@ class App extends StatelessWidget {
   /// Inital config, dependencies, bloc,...
   static Future<void> resolveDependencies() {
     Bloc.observer = AppBlocObserver();
-    configureInjection();
+    configureInjection(environment: Config.environment?.name);
+
     return getIt.allReady();
   }
 

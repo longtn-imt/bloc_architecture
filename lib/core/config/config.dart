@@ -1,10 +1,15 @@
 import 'package:flutter/foundation.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class Config {
   static const bool enableGeneralLog = kDebugMode;
   static const bool isPrettyJson = kDebugMode;
-  static const String flavor = String.fromEnvironment('FLAVOR');
-  static bool get isDevFlavor => flavor.toLowerCase().contains('dev');
+  static Environment? get environment => switch (const String.fromEnvironment('FLAVOR').toLowerCase()) {
+        Environment.dev => dev,
+        Environment.test => test,
+        Environment.prod => prod,
+        String() => null,
+      };
 
   /// network
   static const String baseUrl = String.fromEnvironment('BASE_URL');

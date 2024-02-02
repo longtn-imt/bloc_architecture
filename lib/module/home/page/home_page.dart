@@ -22,7 +22,16 @@ class _HomePageState extends BasePageState<HomePage, HomeBloc> {
   Widget buildPage(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home page')),
-      body: Center(child: AppAssets.images.flutter.image()),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Center(child: AppAssets.images.flutter.image()),
+          ElevatedButton(
+            onPressed: () => bloc.add(const HomeEvent.testApi()),
+            child: const Text('Test api'),
+          )
+        ],
+      ),
     );
   }
 }
