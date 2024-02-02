@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "helloWorld": "Hello world",
+  "somethingWentWrong": "Some thing went wrong",
+  "now": "Now",
+  "fewSecondsAgo": "Few seconds ago",
+  "minutesRelative": "{minutes} minutes ago",
+  "hoursRelative": "{hours} hours ago",
+  "daysRelative": "{days} days ago",
+  "search": "Search"
+}
