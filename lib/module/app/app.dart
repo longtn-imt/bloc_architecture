@@ -7,7 +7,7 @@ import '../../core/config/config.dart';
 import '../../core/config/injector.dart';
 import '../../core/extension/extenstion.dart';
 import '../../core/theme/theme.dart';
-import '../home/home.dart';
+import '../../router/router.dart';
 import 'bloc/app_bloc.dart';
 import 'page/error_page.dart';
 
@@ -35,7 +35,7 @@ class App extends StatelessWidget {
 
   /// Build [MaterialApp]
   Widget buildApp(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       themeMode: AppThemeData.of(context).themeMode,
       theme: AppThemes.themeData,
       darkTheme: AppThemes.darkThemeData,
@@ -58,7 +58,7 @@ class App extends StatelessWidget {
 
         return widget;
       },
-      home: const HomePage(),
+      routerConfig: goRouterConfig,
     );
   }
 

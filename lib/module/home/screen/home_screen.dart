@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/base/base.dart';
+import '../../../core/config/injector.dart';
 import '../../../core/theme/theme.dart';
+import '../../auth/auth.dart';
 import '../bloc/home_bloc.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends BasePageState<HomePage, HomeBloc> {
+class _HomeScreenState extends BasePageState<HomeScreen, HomeBloc> {
   @override
   void initState() {
     super.initState();
@@ -29,7 +31,11 @@ class _HomePageState extends BasePageState<HomePage, HomeBloc> {
           ElevatedButton(
             onPressed: () => bloc.add(const HomeEvent.testApi()),
             child: const Text('Test api'),
-          )
+          ),
+          ElevatedButton(
+            onPressed: () => getIt.get<AuthBloc>().add(const AuthEvent.logout()),
+            child: const Text('Logout'),
+          ),
         ],
       ),
     );

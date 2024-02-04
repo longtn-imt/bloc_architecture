@@ -28,10 +28,9 @@ abstract class Config {
   static const bool enableErrorPage = kReleaseMode;
   static const bool enableNavigatorObserverLog = kDebugMode;
 
-  /// log interceptor
-  static const bool enableLogNetworkException = kDebugMode;
-  static const bool enableLogRequestInfo = kDebugMode;
-
   /// Deep link
   static const String deepLinkUrl = String.fromEnvironment('DEEP_LINK_URL');
+
+  /// Local storage
+  static const String localStorageName = String.fromEnvironment('LOCAL_STORAGE_NAME');
 }

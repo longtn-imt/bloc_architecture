@@ -1,12 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../../database/hive_type_id.dart';
+
 part 'user.freezed.dart';
 part 'user.g.dart';
 
 @freezed
 class User with _$User {
-  @HiveType(typeId: 2, adapterName: 'UserAdapter')
+  @HiveType(typeId: HiveTypeId.user, adapterName: 'UserAdapter')
   const factory User({
     @HiveField(0) int? id,
     @HiveField(1) String? name,

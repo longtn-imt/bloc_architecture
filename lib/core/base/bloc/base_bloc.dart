@@ -6,6 +6,10 @@ import 'mixin/event_transformer_mixin.dart';
 import 'mixin/log_mixin.dart';
 import 'status/status_cubit.dart';
 
+/// Base config bloc for app
+///
+/// * support `runBlocCatching` for excute function safe
+/// * support loading for page
 abstract class BaseBloc<Event, State> extends BaseBlocDelegate<Event, State> with EventTransformerMixin<Event, State> {
   BaseBloc(super.initialState);
 }
@@ -16,7 +20,7 @@ abstract class BaseBlocDelegate<E, S> extends Bloc<E, S> with LogMixin {
   StatusCubit? _statusCubit;
   StatusCubit get statusCubit => _statusCubit ??= StatusCubit();
 
-  /// Auto close [Bloc] in class [BasePageState]
+  /// Auto close bloc when [BasePageState] remove memory
   bool get autoClose => true;
 
   /// Notifies the [Bloc] of a new [event] which triggers all corresponding [EventHandler] instances.
@@ -29,16 +33,23 @@ abstract class BaseBlocDelegate<E, S> extends Bloc<E, S> with LogMixin {
     }
   }
 
-  /// Change the state to error
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    if (error is Exception) addException(error);
+
+    super.onError(error, stackTrace);
+  }
+
+  /// Add [Exception] for bloc
   void addException(Exception? exception) => statusCubit.exceptionEmitted(exception);
 
-  /// Change the state to loading state
+  /// Change status page to loading
   void showLoading() => statusCubit.loadingEmitted();
 
-  /// Change the state to hiden loading
+  /// Change status page to success or started
   void hideLoading({bool isSuccess = false}) => isSuccess ? statusCubit.successEmitted() : statusCubit.initalEmitted();
 
-  /// Execute safety functions
+  /// Excute function safe
   Future<void> runBlocCatching<T>({
     required Future<T> Function() action,
     FutureOr<void> Function()? doOnEventStart,

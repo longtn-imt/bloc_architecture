@@ -5,13 +5,13 @@ import 'package:retrofit/retrofit.dart';
 import '../model/request/login_form.dart';
 import '../model/respone/user.dart';
 
-part 'auth_api.g.dart';
+part 'auth_client.g.dart';
 
 @injectable
 @RestApi()
-abstract class AuthApi {
+abstract class AuthClient {
   @factoryMethod
-  factory AuthApi(Dio dio, {@Named('BaseUrl') String baseUrl}) = _AuthApi;
+  factory AuthClient(Dio dio, {@Named('BaseUrl') String baseUrl}) = _AuthClient;
 
   @POST('/login')
   Future<User> login(@Body() LoginForm form);
