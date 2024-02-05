@@ -84,4 +84,7 @@ class App extends StatelessWidget {
     _widgetsBinding?.allowFirstFrame();
     _widgetsBinding = null;
   }
+
+  /// Check is show splash screen
+  static bool get hasSplash => _widgetsBinding != null;
 }

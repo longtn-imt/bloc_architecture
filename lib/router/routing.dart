@@ -22,6 +22,8 @@ GoRouter goRouterConfig = GoRouter(
       return const HomeRoute().location;
     }
 
+    if (App.hasSplash) App.removeSplash();
+
     return null;
   },
 );

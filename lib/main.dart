@@ -9,6 +9,9 @@ import 'module/app/app.dart';
 
 void main() async {
   runZonedGuarded(() async {
+    /// Show splash screen
+    App.preserveSplash(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
+
     /// Hive
     await Hive.initFlutter();
     HiveTypeId.init();

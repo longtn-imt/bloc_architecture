@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../core/config/config.dart';
 import '../core/config/injector.dart';
+import '../module/app/app.dart';
 import '../module/auth/auth.dart';
 import '../module/home/home.dart';
 
