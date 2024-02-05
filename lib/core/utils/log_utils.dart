@@ -33,7 +33,7 @@ class LogUntils {
     );
   }
 
-  static void recordError(Object error, StackTrace stack) => e(error.toString(), stackTrace: stack);
+  static void recordError(Object error, StackTrace stack) => e('RecordError', errorObject: error, stackTrace: stack);
 
   static String prettyJson(Object json) {
     if (!Config.isPrettyJson) {

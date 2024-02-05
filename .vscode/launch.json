@@ -11,7 +11,8 @@
       "program": "lib/main.dart",
       "args": [
         "--target", "lib/main.dart",
-        "--dart-define-from-file", "env-dev.json"
+        "--dart-define-from-file", "env-dev.json",
+        "--flavor", "development",
       ],
       "flutterMode": "debug",
       "internalConsoleOptions": "openOnSessionStart",
@@ -24,7 +25,8 @@
       "program": "lib/main.dart",
       "args": [
         "--target", "lib/main.dart",
-        "--dart-define-from-file", "env-prod.json"
+        "--dart-define-from-file", "env-prod.json",
+        "--flavor", "production",
       ],
       "flutterMode": "debug",
       "internalConsoleOptions": "openOnSessionStart",

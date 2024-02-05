@@ -11,7 +11,7 @@ abstract class HiveTypeId {
     Hive.registerAdapter<User>(UserAdapter());
   }
 
-  static const int dateTime = 9999;
+  static const int dateTime = 0;
 
   static const int appState = 1;
 
