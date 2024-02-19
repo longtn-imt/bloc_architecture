@@ -4,25 +4,31 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../extension/extenstion.dart';
 import 'formatter_utils.dart';
 
+/// Until handle DateTime
 class DateTimeUtils {
   const DateTimeUtils._();
 
+  /// Return a string representing format: yyyy-MM-dd
   static String convertToDate(DateTime dateTime) {
-    return DateTimeFormatter.dateFormatDot.format(dateTime);
+    return DateTimeFormatter.dateFormatHyphen.format(dateTime);
   }
 
+  /// Return a string representing format: HH:mm:ss
   static String convertToTime(DateTime dateTime) {
     return DateTimeFormatter.timeFormat.format(dateTime);
   }
 
+  /// Return a string representing format: HH:mm
   static String convertToTimeNoSecond(DateTime dateTime) {
     return DateTimeFormatter.timeNoSecondFormat.format(dateTime);
   }
 
+  /// Return a string representing format: yyyy-MM-dd HH:mm:ss
   static String convertToDateTime(DateTime dateTime) {
-    return DateTimeFormatter.dateTimeFormatDot.format(dateTime);
+    return DateTimeFormatter.dateTimeFormatHyphen.format(dateTime);
   }
 
+  /// Return a string representing format: Now, few Seconds Ago, 1 minutes ago, 2 hours ago, 3 days ago,...
   static String convertToDateRelative(
     BuildContext context,
     DateTime dateTime, {

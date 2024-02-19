@@ -1,13 +1,24 @@
 import 'package:flutter/widgets.dart';
 
+/// Config default value dimens for Widget
 class AppDimens {
   AppDimens._();
 
-  static const double dialogWidth = 300.0;
-  static const double dialogGap = 24.0;
-  static const EdgeInsets dialogPadding = EdgeInsets.symmetric(horizontal: 15.0, vertical: 24.0);
+  /// Width of dialog (Px)
+  static const double dialogWidth = 300;
+
+  /// Gap of dialog (Px)
+  static const double dialogGap = 24;
+
+  /// Padding of dialog (Px)
+  static const EdgeInsets dialogPadding = EdgeInsets.symmetric(horizontal: 15, vertical: 24);
+
+  /// Radius of dialog (Px)
   static const BorderRadius dialogRadius = BorderRadius.all(Radius.circular(10));
 
-  static const EdgeInsets cardPadding = EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0);
-  static const double cardGap = 12.0;
+  /// Padding of card (Px)
+  static const EdgeInsets cardPadding = EdgeInsets.symmetric(horizontal: 16, vertical: 10);
+
+  /// Gap of card (Px)
+  static const double cardGap = 12;
 }

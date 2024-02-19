@@ -1,10 +1,13 @@
 import '../../../utils/log_utils.dart';
 
+/// Common function Log
 mixin LogMixin on Object {
+  /// Log data
   void logD(String message, {DateTime? time}) {
     LogUntils.d(message, name: runtimeType.toString(), time: time);
   }
 
+  /// Log error
   void logE(
     Object? errorMessage, {
     Object? errorObject,

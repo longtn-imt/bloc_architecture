@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -29,7 +30,9 @@ import 'bloc/status/status_cubit.dart';
 abstract class BasePageState<Widget extends StatefulWidget, Bloc extends BaseBloc<dynamic, dynamic>>
     extends BasePageStateDelegate<Widget, Bloc> with LogMixin, ThemeMixin<Widget> {}
 
+/// Delegate of [BasePageState]
 abstract class BasePageStateDelegate<W extends StatefulWidget, B extends BaseBloc<dynamic, dynamic>> extends State<W> {
+  /// This is Bloc get from GetIt
   late final B bloc = GetIt.instance.get<B>();
 
   /// Get status of page (Loading, success,..)
@@ -44,11 +47,11 @@ abstract class BasePageStateDelegate<W extends StatefulWidget, B extends BaseBlo
       providers: (autoClose && bloc.autoClose)
           ? <BlocProvider<dynamic>>[
               BlocProvider<B>(create: (_) => bloc),
-              BlocProvider<StatusCubit>(create: (_) => bloc.statusCubit)
+              BlocProvider<StatusCubit>(create: (_) => bloc.statusCubit),
             ]
           : <BlocProvider<dynamic>>[
               BlocProvider<B>.value(value: bloc),
-              BlocProvider<StatusCubit>.value(value: bloc.statusCubit)
+              BlocProvider<StatusCubit>.value(value: bloc.statusCubit),
             ],
       child: BlocConsumer<StatusCubit, StatusState>(
         bloc: bloc.statusCubit,
@@ -89,4 +92,13 @@ abstract class BasePageStateDelegate<W extends StatefulWidget, B extends BaseBlo
 
   /// Build widget of page
   Widget buildPage(BuildContext context);
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty<StatusState>('status', status))
+      ..add(DiagnosticsProperty<bool>('autoClose', autoClose))
+      ..add(DiagnosticsProperty<B>('bloc', bloc));
+  }
 }

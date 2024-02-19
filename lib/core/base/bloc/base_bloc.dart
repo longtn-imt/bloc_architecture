@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../base_page_state.dart';
 import 'mixin/event_transformer_mixin.dart';
 import 'mixin/log_mixin.dart';
 import 'status/status_cubit.dart';
@@ -11,14 +12,18 @@ import 'status/status_cubit.dart';
 /// * support `runBlocCatching` for excute function safe
 /// * support loading for page
 abstract class BaseBloc<Event, State> extends BaseBlocDelegate<Event, State> with EventTransformerMixin<Event, State> {
+  /// Creates a BaseBloc
   BaseBloc(super.initialState);
 }
 
+/// Delegate of BaseBloc
 abstract class BaseBlocDelegate<E, S> extends Bloc<E, S> with LogMixin {
+  /// Creates a BaseBlocDelegate
   BaseBlocDelegate(super.initialState);
 
-  StatusCubit? _statusCubit;
+  /// Status of bloc
   StatusCubit get statusCubit => _statusCubit ??= StatusCubit();
+  StatusCubit? _statusCubit;
 
   /// Auto close bloc when [BasePageState] remove memory
   bool get autoClose => true;
@@ -35,13 +40,15 @@ abstract class BaseBlocDelegate<E, S> extends Bloc<E, S> with LogMixin {
 
   @override
   void onError(Object error, StackTrace stackTrace) {
-    if (error is Exception) addException(error);
+    if (error is Exception) {
+      addException(error);
+    }
 
     super.onError(error, stackTrace);
   }
 
   /// Add [Exception] for bloc
-  void addException(Exception? exception) => statusCubit.exceptionEmitted(exception);
+  void addException(Exception? exception) => statusCubit.errorEmitted(exception);
 
   /// Change status page to loading
   void showLoading() => statusCubit.loadingEmitted();
@@ -63,25 +70,37 @@ abstract class BaseBlocDelegate<E, S> extends Bloc<E, S> with LogMixin {
     try {
       await doOnEventStart?.call();
 
-      if (handleLoading) showLoading();
+      if (handleLoading) {
+        showLoading();
+      }
 
       final T value = await action.call();
 
-      if (handleLoading) hideLoading(isSuccess: true);
+      if (handleLoading) {
+        hideLoading(isSuccess: true);
+      }
 
       await doOnSuccess?.call(value);
     } on Exception catch (e) {
-      if (handleLoading) hideLoading();
+      if (handleLoading) {
+        hideLoading();
+      }
 
       await doOnException?.call(e);
 
-      if (handleError) addException(e);
+      if (handleError) {
+        addException(e);
+      }
     } on Error catch (e) {
-      if (handleLoading) hideLoading();
+      if (handleLoading) {
+        hideLoading();
+      }
 
       await doOnError?.call(e);
 
-      if (handleError) addError(e, e.stackTrace);
+      if (handleError) {
+        addError(e, e.stackTrace);
+      }
     } finally {
       await doOnEventCompleted?.call();
     }

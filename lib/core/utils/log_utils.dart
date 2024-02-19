@@ -4,11 +4,13 @@ import 'dart:developer' as dev;
 
 import '../config/config.dart';
 
+/// Until log data, error, ...
 class LogUntils {
   const LogUntils._();
 
   static const bool _enableLog = Config.enableGeneralLog;
 
+  /// Log data
   static void d(
     Object? message, {
     String? name,
@@ -17,6 +19,7 @@ class LogUntils {
     log('💡 $message', name: name ?? '', time: time);
   }
 
+  /// Log error
   static void e(
     Object? errorMessage, {
     String? name,
@@ -33,8 +36,10 @@ class LogUntils {
     );
   }
 
+  /// Log record error
   static void recordError(Object error, StackTrace stack) => e('RecordError', errorObject: error, stackTrace: stack);
 
+  /// Log JSON pretty
   static String prettyJson(Object json) {
     if (!Config.isPrettyJson) {
       return json.toString();
@@ -45,10 +50,24 @@ class LogUntils {
     return encoder.convert(json);
   }
 
+  /// Emit a log event.
+  ///
+  /// This function was designed to map closely to the logging information
+  /// collected by `package:logging`.
+  ///
+  /// - [message] is the log message
+  /// - [time] (optional) is the timestamp
+  /// - [sequenceNumber] (optional) is a monotonically increasing sequence number
+  /// - [level] (optional) is the severity level (a value between 0 and 2000); see
+  ///   the `package:logging` `Level` class for an overview of the possible values
+  /// - [name] (optional) is the name of the source of the log message
+  /// - [zone] (optional) the zone where the log was emitted
+  /// - [error] (optional) an error object associated with this log event
+  /// - [stackTrace] (optional) a stack trace associated with this log event
   static void log(
     String message, {
     int level = 0,
-    String name = '',
+    String name = 'LogUntils',
     DateTime? time,
     int? sequenceNumber,
     Zone? zone,

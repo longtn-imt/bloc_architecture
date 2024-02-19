@@ -8,15 +8,27 @@ class AppThemes {
 
   static ThemeData themeData = ThemeData.from(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(seedColor: XmlColors.primary),
+    colorScheme: ColorScheme.fromSwatch(
+      primarySwatch: AssetColors.primary,
+      accentColor: AssetColors.secondary,
+      backgroundColor: AssetColors.white,
+      errorColor: AssetColors.error,
+    ),
   );
 
   static ThemeData darkThemeData = ThemeData.from(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(seedColor: XmlColors.primary, brightness: Brightness.dark),
+    colorScheme: ColorScheme.fromSwatch(
+      brightness: Brightness.dark,
+      primarySwatch: AssetColors.primary,
+      accentColor: AssetColors.secondary,
+      backgroundColor: AssetColors.black,
+      errorColor: AssetColors.error,
+    ),
   );
 }
 
+/// App design [AppColors], [ThemeMode], [Locale].
 class AppThemeData extends InheritedWidget {
   const AppThemeData({
     super.key,

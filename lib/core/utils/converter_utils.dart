@@ -2,7 +2,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'formatter_utils.dart';
 
+/// Convert field [DateTime] of Class to [String] of JSON
 class ConvertStringToDateTime implements JsonConverter<DateTime, String> {
+  /// Create a ConvertStringToDateTime
   const ConvertStringToDateTime();
 
   @override
@@ -20,7 +22,9 @@ class ConvertStringToDateTime implements JsonConverter<DateTime, String> {
   }
 }
 
+/// Convert field `Date` of Class to [String] of JSON
 class ConvertStringToDate implements JsonConverter<DateTime, String> {
+  /// Create a ConvertStringToDate
   const ConvertStringToDate();
 
   @override
@@ -38,7 +42,9 @@ class ConvertStringToDate implements JsonConverter<DateTime, String> {
   }
 }
 
+/// Convert field [int] of Class to [Object] of JSON
 class ConvertToInt implements JsonConverter<int, Object> {
+  /// Create a ConvertToInt
   const ConvertToInt();
 
   @override
@@ -53,7 +59,9 @@ class ConvertToInt implements JsonConverter<int, Object> {
   Object toJson(int object) => object;
 }
 
+/// Convert field [double] of Class to [Object] of JSON
 class ConvertToDouble implements JsonConverter<double, Object> {
+  /// Create a ConvertToDouble
   const ConvertToDouble();
 
   @override
@@ -68,7 +76,9 @@ class ConvertToDouble implements JsonConverter<double, Object> {
   Object toJson(double object) => object;
 }
 
+/// Convert field [bool] of Class to [Object] of JSON
 class ConvertToBool implements JsonConverter<bool, Object> {
+  /// Create a ConvertToBool
   const ConvertToBool();
 
   @override

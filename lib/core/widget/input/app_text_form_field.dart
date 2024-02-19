@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +9,7 @@ import '../../theme/theme.dart';
 
 /// If you making a `AppTextFormField` where you require save, reset, or validate
 class AppTextFormField extends TextField {
+  /// Create a AppTextFormField
   const AppTextFormField({
     super.key,
     // Form
@@ -61,37 +63,96 @@ class AppTextFormField extends TextField {
     super.maxLines = 1,
     super.scrollController,
     super.scrollPhysics,
-    this.enableInteractiveSelectionOption = true,
   });
 
-  // Decoration
+  /// Decoration: The base fill color of the decoration's container color.
   final Color? fillColor;
+
+  /// Decoration: Optional widget to place on the line before the input.
   final Widget? prefix;
+
+  /// Decoration: An icon that appears before the [prefix] and before the editable part of the text field, within the decoration's container.
   final Widget? prefixIcon;
+
+  /// Decoration: Optional widget to place on the line after the input.
   final Widget? suffix;
+
+  /// Decoration: An icon that appears after the editable part of the text field and after the [suffix], within the decoration's container.
   final Widget? suffixIcon;
+
+  /// Decoration: Optional widget that describes the input field.
   final Widget? label;
+
+  /// Decoration: Text that suggests what sort of input the field accepts.
   final String? hintText;
+
+  /// Decoration: Text that appears below the [InputDecorator.child] and the border.
   final String? errorText;
+
+  /// Decoration: The constraints for the suffix icon.
   final BoxConstraints? suffixIconConstraints;
+
+  /// Decoration: The constraints for the prefix icon.
   final BoxConstraints? prefixIconConstraints;
+
+  /// Decoration: The padding for the input decoration's container.
   final EdgeInsets? contentPadding;
+
+  /// Decoration: Whether the [InputDecorator.child] is part of a dense form (i.e., uses less vertical space).
   final bool isDense;
-  // Form
+
+  /// Form: The current state of a [FormField]. Passed to the [FormFieldBuilder] method for use in constructing the form field's widget.
   final GlobalKey<FormFieldState<String>>? fieldKey;
+
+  /// Form: An optional value to initialize the form field to, or null otherwise.
   final String? initialValue;
+
+  /// Form: An optional method that validates an input. Returns an error string to display if the input is invalid, or null otherwise.
   final FormFieldValidator<String>? validator;
+
+  /// Form: An optional method to call with the final value when the form is saved via [FormState.save].
   final FormFieldSetter<String>? onSaved;
+
+  /// Form: An optional method to call with the final value when the form is saved via user submit.
   final ValueChanged<String>? onFieldSubmitted;
+
+  /// Form: An optional method to call with the final value when the form is saved via user end input.
   final ValueChanged<String>? onEditingEnd;
+
+  /// Form: An optional method to call with the final value when the form is saved via user change forcus field.
   final ValueChanged<bool>? onFocusChange;
-  final bool enableInteractiveSelectionOption;
 
   @override
   State<AppTextFormField> createState() => AppTextFormFieldState<AppTextFormField>();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(ColorProperty('fillColor', fillColor))
+      ..add(DiagnosticsProperty<Widget?>('prefix', prefix))
+      ..add(DiagnosticsProperty<Widget?>('prefixIcon', prefixIcon))
+      ..add(DiagnosticsProperty<Widget?>('suffix', suffix))
+      ..add(DiagnosticsProperty<Widget?>('suffixIcon', suffixIcon))
+      ..add(DiagnosticsProperty<Widget?>('label', label))
+      ..add(StringProperty('hintText', hintText))
+      ..add(StringProperty('errorText', errorText))
+      ..add(DiagnosticsProperty<BoxConstraints?>('suffixIconConstraints', suffixIconConstraints))
+      ..add(DiagnosticsProperty<BoxConstraints?>('prefixIconConstraints', prefixIconConstraints))
+      ..add(DiagnosticsProperty<EdgeInsets?>('contentPadding', contentPadding))
+      ..add(DiagnosticsProperty<bool>('isDense', isDense))
+      ..add(DiagnosticsProperty<GlobalKey<FormFieldState<String>>?>('fieldKey', fieldKey))
+      ..add(StringProperty('initialValue', initialValue))
+      ..add(ObjectFlagProperty<FormFieldValidator<String>?>.has('validator', validator))
+      ..add(ObjectFlagProperty<FormFieldSetter<String>?>.has('onSaved', onSaved))
+      ..add(ObjectFlagProperty<ValueChanged<String>?>.has('onFieldSubmitted', onFieldSubmitted))
+      ..add(ObjectFlagProperty<ValueChanged<String>?>.has('onEditingEnd', onEditingEnd))
+      ..add(ObjectFlagProperty<ValueChanged<bool>?>.has('onFocusChange', onFocusChange));
+  }
 }
 
-class AppTextFormFieldState<T extends AppTextFormField> extends State<T> with TextFieldHandler<T>, ThemeMixin<T> {
+/// The logic and internal state for a [AppTextFormField].
+class AppTextFormFieldState<T extends AppTextFormField> extends State<T> with AppTextFormFieldHandle<T>, ThemeMixin<T> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -132,18 +193,23 @@ class AppTextFormFieldState<T extends AppTextFormField> extends State<T> with Te
       validator: buildValidator(context),
       restorationId: widget.restorationId,
       autovalidateMode: AutovalidateMode.disabled,
-      enableInteractiveSelection: widget.enableInteractiveSelectionOption,
     );
   }
 
+  /// Custom validator when extend class
   FormFieldValidator<String>? buildValidator(BuildContext context) => widget.validator;
 
+  /// Custom formatters when extend class
   List<TextInputFormatter>? buildInputFormatters(BuildContext context) => widget.inputFormatters;
 
+  /// Custom obscureText when extend class
   bool get obscureText => widget.obscureText;
 
+  /// Custom decoration when extend class
   InputDecoration buildDecoration(BuildContext context) {
-    if (widget.decoration != null) return widget.decoration!;
+    if (widget.decoration != null) {
+      return widget.decoration!;
+    }
 
     return InputDecoration(
       prefix: widget.prefix,
@@ -165,18 +231,30 @@ class AppTextFormFieldState<T extends AppTextFormField> extends State<T> with Te
       floatingLabelStyle: widget.style,
     );
   }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<bool>('obscureText', obscureText));
+  }
 }
 
-mixin TextFieldHandler<T extends AppTextFormField> on State<T> {
+/// Handle form input text field
+mixin AppTextFormFieldHandle<T extends AppTextFormField> on State<T> {
   FocusNode? _focusNode;
   Timer? _debounce;
-  GlobalKey<FormFieldState<String>>? fieldKey;
   TextEditingController? _controller;
 
+  /// Key [FormFieldState]
+  GlobalKey<FormFieldState<String>>? fieldKey;
+
+  /// The current state of a [FormField]. Passed to the [FormFieldBuilder] method for use in constructing the form field's widget
   FormFieldState<String>? get fieldState => fieldKey?.currentState;
 
+  /// An object that can be used by a stateful widget to obtain the keyboard focus and to handle keyboard events.
   FocusNode get focusNode => widget.focusNode ?? (_focusNode ??= FocusNode());
 
+  /// A controller for an editable text field.
   TextEditingController get controller {
     return widget.controller ?? (_controller ??= TextEditingController(text: widget.initialValue));
   }
@@ -199,6 +277,7 @@ mixin TextFieldHandler<T extends AppTextFormField> on State<T> {
     _controller?.dispose();
   }
 
+  /// Action when text field change forcus
   void onFocusChange() {
     if (!focusNode.hasFocus) {
       setState(() => fieldState?.validate());
@@ -206,6 +285,7 @@ mixin TextFieldHandler<T extends AppTextFormField> on State<T> {
     widget.onFocusChange?.call(focusNode.hasFocus);
   }
 
+  /// Action when controller change text
   void onControllerChange() {
     fieldState?.didChange(controller.text);
     if (fieldState?.isValid ?? false) {
@@ -213,6 +293,7 @@ mixin TextFieldHandler<T extends AppTextFormField> on State<T> {
     }
   }
 
+  /// Action when text field change text
   void onFieldChange(String value) {
     widget.onChanged?.call(value);
     if (fieldState?.isValid ?? false) {
@@ -228,5 +309,6 @@ mixin TextFieldHandler<T extends AppTextFormField> on State<T> {
     }
   }
 
+  /// Action when text field tap
   void onTap() => widget.onTap?.call();
 }

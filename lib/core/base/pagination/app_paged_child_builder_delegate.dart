@@ -5,7 +5,9 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../extension/extenstion.dart';
 import '../../theme/theme.dart';
 
+/// Supplies builders for the visual components of paged views.
 class AppPagedChildBuilderDelegate<T> extends PagedChildBuilderDelegate<T> {
+  /// Creates a PagedChildBuilderDelegate.
   AppPagedChildBuilderDelegate({
     required super.itemBuilder,
 
@@ -29,11 +31,14 @@ Widget _pageErrorIndicator(BuildContext context) {
   final AppLocalizations l10n = context.l10n;
 
   return Center(
-    child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-      Icon(Icons.refresh, color: colors.foreground),
-      Text(l10n.somethingWentWrong, style: context.textTheme.bodySmall),
-      const SizedBox(height: 8),
-    ]),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Icon(Icons.refresh, color: colors.foreground),
+        Text(l10n.somethingWentWrong, style: context.textTheme.bodySmall),
+        const SizedBox(height: 8),
+      ],
+    ),
   );
 }
 

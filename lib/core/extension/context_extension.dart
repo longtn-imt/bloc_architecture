@@ -3,23 +3,33 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../theme/theme.dart';
 
+/// Common get value with BuildContext
 extension ContextExtension on BuildContext {
+  /// Callers can lookup localized strings with an instance of AppLocalizations
   AppLocalizations get l10n => AppLocalizations.of(this);
 
+  /// A theme describes the colors and typographic choices of an application.
   ThemeData get theme => Theme.of(this);
 
+  /// App design [AppColors], [ThemeMode], [Locale].
   AppThemeData get appTheme => AppThemeData.of(this);
 
+  /// Returns [MediaQueryData.platformBrightness] for the nearest [MediaQuery] ancestor or [Brightness.light], if no such ancestor exists.
   Brightness get platformBrightness => MediaQuery.platformBrightnessOf(this);
 
+  /// Manages [SnackBar]s and [MaterialBanner]s for descendant [Scaffold]s.
   ScaffoldMessengerState get messenger => ScaffoldMessenger.of(this);
 
+  /// Returns [MediaQueryData.size] from the nearest [MediaQuery] ancestor or throws an exception, if no such ancestor exists.
   Size get mediaQuerySize => MediaQuery.sizeOf(this);
 
+  ///Returns [MediaQueryData.viewPadding] for the nearest [MediaQuery] ancestor or throws an exception, if no such ancestor exists.
   EdgeInsets get mediaQueryViewPadding => MediaQuery.viewPaddingOf(this);
 
+  /// Returns [MediaQueryData.viewInsets] for the nearest [MediaQuery] ancestor or throws an exception, if no such ancestor exists.
   EdgeInsets get mediaQueryViewInsets => MediaQuery.viewInsetsOf(this);
 
+  /// Returns [MediaQueryData.orientation] for the nearest [MediaQuery] ancestor or throws an exception, if no such ancestor exists.
   Orientation get mediaQueryOrientation => MediaQuery.orientationOf(this);
 
   /// similar to [Theme.of(context).colorScheme]
