@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
 
-class TokenInterceptor extends Interceptor {
-  TokenInterceptor();
-}
+/// [TokenInterceptor] is used to handle token during network requests.
+class TokenInterceptor extends Interceptor {}

@@ -4,6 +4,10 @@ import 'package:dio/dio.dart';
 
 import '../../core/utils/log_utils.dart';
 
+/// [LoggingInterceptor] is used to print logs during network requests.
+/// It should be the last interceptor added, otherwise modifications by
+/// following interceptors will not be logged. This is because the execution
+/// of interceptors is in the order of addition.
 class LoggingInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -16,7 +20,7 @@ class LoggingInterceptor extends Interceptor {
 
     if (options.queryParameters.isNotEmpty) {
       _printBody('QueryParameters:');
-      options.queryParameters.forEach((String k, dynamic v) => _printBody('\t$k: $v'));
+      options.queryParameters.forEach((String k, Object? v) => _printBody('\t$k: $v'));
     }
 
     if (options.data is Map || options.data is Iterable) {
@@ -70,7 +74,7 @@ class LoggingInterceptor extends Interceptor {
 
     try {
       _logPrint(cURLRepresentation(err.requestOptions), type: 3);
-    } catch (err) {
+    } on Object catch (_) {
       _logPrint('Unable to create a CURL representation of the errored', type: 3);
     }
 
@@ -107,19 +111,19 @@ void _printFooter({String? title, int type = 0}) {
   _logPrint('╚═ END $title', type: type);
 }
 
-String? _getBody(dynamic data) {
+String? _getBody(Object? data) {
   try {
     return jsonEncode(data);
-  } catch (_) {
+  } on Object catch (_) {
     return data.toString();
   }
 }
 
+/// Genegara cURL form [RequestOptions]
 String cURLRepresentation(RequestOptions request) {
-  final List<String> components = <String>[];
-  components.add("curl --request ${request.method.toUpperCase()} '${request.uri}'");
+  final List<String> components = <String>["curl --request ${request.method.toUpperCase()} '${request.uri}'"];
   // Header
-  request.headers.forEach((String k, dynamic v) {
+  request.headers.forEach((String k, Object? v) {
     if (!k.contains('content-length')) {
       components.add("--header '$k: $v'");
     }
