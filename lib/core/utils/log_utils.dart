@@ -1,8 +1,8 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:developer' as dev;
+import "dart:async";
+import "dart:convert";
+import "dart:developer" as dev;
 
-import '../config/config.dart';
+import "../config/config.dart";
 
 /// Until log data, error, ...
 class LogUntils {
@@ -16,7 +16,7 @@ class LogUntils {
     String? name,
     DateTime? time,
   }) {
-    log('💡 $message', name: name ?? '', time: time);
+    log("💡 $message", name: name ?? "", time: time);
   }
 
   /// Log error
@@ -28,8 +28,8 @@ class LogUntils {
     DateTime? time,
   }) {
     log(
-      '💢 $errorMessage',
-      name: name ?? '',
+      "💢 $errorMessage",
+      name: name ?? "",
       error: errorObject,
       stackTrace: stackTrace,
       time: time,
@@ -37,7 +37,7 @@ class LogUntils {
   }
 
   /// Log record error
-  static void recordError(Object error, StackTrace stack) => e('RecordError', errorObject: error, stackTrace: stack);
+  static void recordError(Object error, StackTrace stack) => e("RecordError", errorObject: error, stackTrace: stack);
 
   /// Log JSON pretty
   static String prettyJson(Object json) {
@@ -45,7 +45,7 @@ class LogUntils {
       return json.toString();
     }
 
-    const JsonEncoder encoder = JsonEncoder.withIndent('\t');
+    const JsonEncoder encoder = JsonEncoder.withIndent("\t");
 
     return encoder.convert(json);
   }
@@ -67,7 +67,7 @@ class LogUntils {
   static void log(
     String message, {
     int level = 0,
-    String name = 'LogUntils',
+    String name = "LogUntils",
     DateTime? time,
     int? sequenceNumber,
     Zone? zone,

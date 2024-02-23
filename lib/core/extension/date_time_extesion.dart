@@ -1,6 +1,6 @@
-import 'package:flutter/widgets.dart';
+import "package:flutter/widgets.dart";
 
-import '../utils/utils.dart';
+import "../utils/utils.dart";
 
 /// Common extension for DateTime
 extension DateTimeExtesion on DateTime {
@@ -18,7 +18,7 @@ extension DateTimeExtesion on DateTime {
 
   /// Format: yyyy.MM.dd HH:mm
   String get toDateTimeNoSecondString {
-    return '$toDateString $toTimeNoSecondString';
+    return "$toDateString $toTimeNoSecondString";
   }
 
   /// Format: Now, few Seconds Ago, 1 minutes ago, 2 hours ago, 3 days ago,...
@@ -28,17 +28,17 @@ extension DateTimeExtesion on DateTime {
 /// Common extension for DateTime null
 extension DateTimeNullExtesion on DateTime? {
   /// Format: yyyy.MM.dd
-  String get toDateString => this?.toDateString ?? '';
+  String get toDateString => this?.toDateString ?? "";
 
   /// Format: HH:mm:ss
-  String get toTimeString => this?.toTimeString ?? '';
+  String get toTimeString => this?.toTimeString ?? "";
 
   /// Format: yyyy.MM.dd HH:mm:ss
-  String get toDateTimeString => this?.toDateTimeString ?? '';
+  String get toDateTimeString => this?.toDateTimeString ?? "";
 
   /// Format: HH:mm
-  String get toTimeNoSecondString => this?.toTimeNoSecondString ?? '';
+  String get toTimeNoSecondString => this?.toTimeNoSecondString ?? "";
 
   /// Format: yyyy.MM.dd HH:mm
-  String get toDateTimeNoSecondString => this?.toDateTimeNoSecondString ?? '';
+  String get toDateTimeNoSecondString => this?.toDateTimeNoSecondString ?? "";
 }

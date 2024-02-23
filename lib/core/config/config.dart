@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
-import 'package:injectable/injectable.dart';
+import "package:flutter/foundation.dart";
+import "package:injectable/injectable.dart";
 
 /// Config app with default value or load from environment
 class Config {
@@ -12,7 +12,7 @@ class Config {
   static const bool isPrettyJson = kDebugMode;
 
   /// Used to annotate dependencies which are registered under certain environment
-  static Environment? get environment => switch (const String.fromEnvironment('FLAVOR').toLowerCase()) {
+  static Environment? get environment => switch (const String.fromEnvironment("FLAVOR").toLowerCase()) {
         Environment.dev => dev,
         Environment.test => test,
         Environment.prod => prod,
@@ -20,7 +20,7 @@ class Config {
       };
 
   /// Network base url from environment
-  static const String baseUrl = String.fromEnvironment('BASE_URL');
+  static const String baseUrl = String.fromEnvironment("BASE_URL");
 
   /// Network timeout 10s
   static const Duration timeout = Duration(seconds: 10);
@@ -50,5 +50,5 @@ class Config {
   static const bool enableNavigatorObserverLog = kDebugMode;
 
   /// Deep link from environment
-  static const String deepLinkUrl = String.fromEnvironment('DEEP_LINK_URL');
+  static const String deepLinkUrl = String.fromEnvironment("DEEP_LINK_URL");
 }

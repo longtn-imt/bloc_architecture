@@ -1,7 +1,7 @@
-import 'dart:math' as math;
+import "dart:math" as math;
 
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
+import "package:flutter/services.dart";
+import "package:intl/intl.dart";
 
 /// Style format DateTime
 class DateTimeFormatter {
@@ -11,37 +11,37 @@ class DateTimeFormatter {
   static final DateFormat dateTimeConvert = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
   /// Convert: yyyy-MM-dd
-  static final DateFormat dateConvert = DateFormat('yyyy-MM-dd');
+  static final DateFormat dateConvert = DateFormat("yyyy-MM-dd");
 
   /// Format: yyyy/MM/dd HH:mm:ss
-  static final DateFormat dateTimeFormatSlash = DateFormat('yyyy/MM/dd HH:mm:ss');
+  static final DateFormat dateTimeFormatSlash = DateFormat("yyyy/MM/dd HH:mm:ss");
 
   /// Format: yyyy/MM/dd
-  static final DateFormat dateFormatSlash = DateFormat('yyyy/MM/dd');
+  static final DateFormat dateFormatSlash = DateFormat("yyyy/MM/dd");
 
   /// Format: yyyy-MM-dd HH:mm:ss
-  static final DateFormat dateTimeFormatHyphen = DateFormat('yyyy-MM-dd HH:mm:ss');
+  static final DateFormat dateTimeFormatHyphen = DateFormat("yyyy-MM-dd HH:mm:ss");
 
   /// Format: yyyy-MM-dd
-  static final DateFormat dateFormatHyphen = DateFormat('yyyy-MM-dd');
+  static final DateFormat dateFormatHyphen = DateFormat("yyyy-MM-dd");
 
   /// Format: yyyy.MM.dd HH:mm:ss
-  static final DateFormat dateTimeFormatDot = DateFormat('yyyy.MM.dd HH:mm:ss');
+  static final DateFormat dateTimeFormatDot = DateFormat("yyyy.MM.dd HH:mm:ss");
 
   /// Format: yyyy.MM.dd
-  static final DateFormat dateFormatDot = DateFormat('yyyy.MM.dd');
+  static final DateFormat dateFormatDot = DateFormat("yyyy.MM.dd");
 
   /// Format: HH:mm:ss
-  static final DateFormat timeFormat = DateFormat('HH:mm:ss');
+  static final DateFormat timeFormat = DateFormat("HH:mm:ss");
 
   /// Format: HH:mm
-  static final DateFormat timeNoSecondFormat = DateFormat('HH:mm');
+  static final DateFormat timeNoSecondFormat = DateFormat("HH:mm");
 }
 
 /// TextInputFormatter for Date
 class DateTextFormatter extends TextInputFormatter {
   /// Create a DateTextFormatter
-  const DateTextFormatter({this.seperator = '-'});
+  const DateTextFormatter({this.seperator = "-"});
 
   /// Seperator for Date style
   final String seperator;
@@ -53,7 +53,7 @@ class DateTextFormatter extends TextInputFormatter {
   }
 
   String _format(String value, String seperator) {
-    final String newValue = value.replaceAll(seperator, '');
+    final String newValue = value.replaceAll(seperator, "");
     final StringBuffer buffer = StringBuffer();
 
     for (int i = 0; i < math.min(newValue.length, 8); i++) {

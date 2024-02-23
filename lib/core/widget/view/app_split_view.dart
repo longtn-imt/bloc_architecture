@@ -1,13 +1,15 @@
-import 'package:flutter/material.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter/material.dart";
 
 /// Issue: https://github.com/flutter/flutter/issues/99100
 /// Adaptive navigation structures depending on the screen real estate
 class AppSplitView extends StatefulWidget {
+  /// Create an AppSplitView
   const AppSplitView({
+    required this.primaryView,
     super.key,
     this.breakpoint = 720.0,
     this.secondaryView = const SizedBox.shrink(),
-    required this.primaryView,
   });
 
   /// The width threshold at which the secondary view will be shown.
@@ -20,10 +22,15 @@ class AppSplitView extends StatefulWidget {
   final Widget primaryView;
 
   @override
-  State<AppSplitView> createState() => AppSplitViewState();
+  State<AppSplitView> createState() => _AppSplitViewState();
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DoubleProperty("breakpoint", breakpoint));
+  }
 }
 
-class AppSplitViewState extends State<AppSplitView> {
+class _AppSplitViewState extends State<AppSplitView> {
   bool _hasSplitted = false;
 
   @override

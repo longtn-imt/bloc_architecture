@@ -1,7 +1,7 @@
-import 'package:bloc_concurrency/bloc_concurrency.dart' as concurrency;
-import 'package:flutter_bloc/flutter_bloc.dart';
+import "package:bloc_concurrency/bloc_concurrency.dart" as concurrency;
+import "package:flutter_bloc/flutter_bloc.dart";
 
-import '../base_bloc.dart';
+import "../base_bloc.dart";
 
 /// Common event transformer
 mixin EventTransformerMixin<E, S> on BaseBlocDelegate<E, S> {

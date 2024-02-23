@@ -1,7 +1,7 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import "package:flutter_bloc/flutter_bloc.dart";
 
-import '../../config/config.dart';
-import '../../utils/log_utils.dart';
+import "../../config/config.dart";
+import "../../utils/log_utils.dart";
 
 /// Observing the behavior of [Bloc] instances.
 class AppBlocObserver extends BlocObserver {
@@ -9,7 +9,7 @@ class AppBlocObserver extends BlocObserver {
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
     super.onChange(bloc, change);
     if (Config.logOnBlocChange) {
-      LogUntils.d('onChange $change', name: bloc.runtimeType.toString());
+      LogUntils.d("onChange $change", name: bloc.runtimeType.toString());
     }
   }
 
@@ -17,7 +17,7 @@ class AppBlocObserver extends BlocObserver {
   void onCreate(BlocBase<dynamic> bloc) {
     super.onCreate(bloc);
     if (Config.logOnBlocCreate) {
-      LogUntils.d('created', name: bloc.runtimeType.toString());
+      LogUntils.d("created", name: bloc.runtimeType.toString());
     }
   }
 
@@ -25,7 +25,7 @@ class AppBlocObserver extends BlocObserver {
   void onClose(BlocBase<dynamic> bloc) {
     super.onClose(bloc);
     if (Config.logOnBlocClose) {
-      LogUntils.d('closed', name: bloc.runtimeType.toString());
+      LogUntils.d("closed", name: bloc.runtimeType.toString());
     }
   }
 
@@ -33,7 +33,7 @@ class AppBlocObserver extends BlocObserver {
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
     if (Config.logOnBlocError) {
-      LogUntils.d('onError $error', name: bloc.runtimeType.toString());
+      LogUntils.d("onError $error", name: bloc.runtimeType.toString());
     }
   }
 
@@ -41,7 +41,7 @@ class AppBlocObserver extends BlocObserver {
   void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
     super.onEvent(bloc, event);
     if (Config.logOnBlocEvent) {
-      LogUntils.d('onEvent $event', name: bloc.runtimeType.toString());
+      LogUntils.d("onEvent $event", name: bloc.runtimeType.toString());
     }
   }
 
@@ -49,7 +49,7 @@ class AppBlocObserver extends BlocObserver {
   void onTransition(Bloc<dynamic, dynamic> bloc, Transition<dynamic, dynamic> transition) {
     super.onTransition(bloc, transition);
     if (Config.logOnBlocTransition) {
-      LogUntils.d('onTransition $transition', name: bloc.runtimeType.toString());
+      LogUntils.d("onTransition $transition", name: bloc.runtimeType.toString());
     }
   }
 }

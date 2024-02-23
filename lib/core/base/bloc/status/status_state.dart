@@ -1,4 +1,4 @@
-part of 'status_cubit.dart';
+part of "status_cubit.dart";
 
 /// State of [StatusCubit]
 @freezed

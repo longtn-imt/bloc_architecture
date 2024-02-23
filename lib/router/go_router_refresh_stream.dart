@@ -1,8 +1,8 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/foundation.dart';
+import "package:flutter/foundation.dart";
 
-/// Convert stream to Listenable
+/// Convert Stream to Listenable
 class GoRouterRefreshStream<T> extends ChangeNotifier {
   /// Create a GoRouterRefreshStream
   GoRouterRefreshStream(Stream<T> stream) {

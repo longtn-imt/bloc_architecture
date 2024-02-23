@@ -1,8 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'status_state.dart';
-part 'status_cubit.freezed.dart';
+part "status_state.dart";
+part "status_cubit.freezed.dart";
 
 /// Status cubit of BaseBloc
 class StatusCubit extends Cubit<StatusState> {

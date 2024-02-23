@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter/material.dart";
 
-import '../../base/bloc/mixin/theme_mixin.dart';
-import 'app_text_form_field.dart';
+import "../../base/bloc/mixin/theme_mixin.dart";
+import "app_text_form_field.dart";
 
 /// Text field search with button search
 class AppTextSearchField extends AppTextFormField {
@@ -25,7 +25,7 @@ class AppTextSearchField extends AppTextFormField {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<TextStyle?>('hintStyle', hintStyle));
+    properties.add(DiagnosticsProperty<TextStyle?>("hintStyle", hintStyle));
   }
 }
 

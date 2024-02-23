@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import 'colors.gen.dart';
+import "colors.gen.dart";
 
 /// Custom color for app
 class AppColors {

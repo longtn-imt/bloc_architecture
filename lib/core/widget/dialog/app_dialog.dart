@@ -1,10 +1,10 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter/material.dart";
 
-import '../../extension/extenstion.dart';
-import '../../theme/theme.dart';
+import "../../extension/extenstion.dart";
+import "../../theme/theme.dart";
 
 /// Common extension for Dialog
 extension AppDialogExt on BuildContext {
@@ -56,7 +56,7 @@ class AppDialog extends StatelessWidget {
     Widget? action,
     CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
     MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
-  })  : assert(title != null || content != null, 'a must not be null title or content'),
+  })  : assert(title != null || content != null, "a must not be null title or content"),
         child = Builder(builder: (BuildContext context) {
           return Column(
             mainAxisSize: MainAxisSize.min,
@@ -133,10 +133,10 @@ class AppDialog extends StatelessWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty<Alignment?>('alignment', alignment))
-      ..add(DiagnosticsProperty<EdgeInsets?>('dialogPadding', dialogPadding))
-      ..add(DoubleProperty('dialogWidth', dialogWidth))
-      ..add(DiagnosticsProperty<EdgeInsets?>('padding', padding))
-      ..add(DiagnosticsProperty<BorderRadius>('radius', radius));
+      ..add(DiagnosticsProperty<Alignment?>("alignment", alignment))
+      ..add(DiagnosticsProperty<EdgeInsets?>("dialogPadding", dialogPadding))
+      ..add(DoubleProperty("dialogWidth", dialogWidth))
+      ..add(DiagnosticsProperty<EdgeInsets?>("padding", padding))
+      ..add(DiagnosticsProperty<BorderRadius>("radius", radius));
   }
 }

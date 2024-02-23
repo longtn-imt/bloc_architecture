@@ -1,6 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
+import "package:json_annotation/json_annotation.dart";
 
-import 'formatter_utils.dart';
+import "formatter_utils.dart";
 
 /// Convert field [DateTime] of Class to [String] of JSON
 class ConvertStringToDateTime implements JsonConverter<DateTime, String> {

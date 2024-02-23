@@ -1,11 +1,11 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
-import '../../base/bloc/mixin/theme_mixin.dart';
-import '../../theme/theme.dart';
+import "../../base/bloc/mixin/theme_mixin.dart";
+import "../../theme/theme.dart";
 
 /// If you making a `AppTextFormField` where you require save, reset, or validate
 class AppTextFormField extends TextField {
@@ -129,25 +129,25 @@ class AppTextFormField extends TextField {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(ColorProperty('fillColor', fillColor))
-      ..add(DiagnosticsProperty<Widget?>('prefix', prefix))
-      ..add(DiagnosticsProperty<Widget?>('prefixIcon', prefixIcon))
-      ..add(DiagnosticsProperty<Widget?>('suffix', suffix))
-      ..add(DiagnosticsProperty<Widget?>('suffixIcon', suffixIcon))
-      ..add(DiagnosticsProperty<Widget?>('label', label))
-      ..add(StringProperty('hintText', hintText))
-      ..add(StringProperty('errorText', errorText))
-      ..add(DiagnosticsProperty<BoxConstraints?>('suffixIconConstraints', suffixIconConstraints))
-      ..add(DiagnosticsProperty<BoxConstraints?>('prefixIconConstraints', prefixIconConstraints))
-      ..add(DiagnosticsProperty<EdgeInsets?>('contentPadding', contentPadding))
-      ..add(DiagnosticsProperty<bool>('isDense', isDense))
-      ..add(DiagnosticsProperty<GlobalKey<FormFieldState<String>>?>('fieldKey', fieldKey))
-      ..add(StringProperty('initialValue', initialValue))
-      ..add(ObjectFlagProperty<FormFieldValidator<String>?>.has('validator', validator))
-      ..add(ObjectFlagProperty<FormFieldSetter<String>?>.has('onSaved', onSaved))
-      ..add(ObjectFlagProperty<ValueChanged<String>?>.has('onFieldSubmitted', onFieldSubmitted))
-      ..add(ObjectFlagProperty<ValueChanged<String>?>.has('onEditingEnd', onEditingEnd))
-      ..add(ObjectFlagProperty<ValueChanged<bool>?>.has('onFocusChange', onFocusChange));
+      ..add(ColorProperty("fillColor", fillColor))
+      ..add(DiagnosticsProperty<Widget?>("prefix", prefix))
+      ..add(DiagnosticsProperty<Widget?>("prefixIcon", prefixIcon))
+      ..add(DiagnosticsProperty<Widget?>("suffix", suffix))
+      ..add(DiagnosticsProperty<Widget?>("suffixIcon", suffixIcon))
+      ..add(DiagnosticsProperty<Widget?>("label", label))
+      ..add(StringProperty("hintText", hintText))
+      ..add(StringProperty("errorText", errorText))
+      ..add(DiagnosticsProperty<BoxConstraints?>("suffixIconConstraints", suffixIconConstraints))
+      ..add(DiagnosticsProperty<BoxConstraints?>("prefixIconConstraints", prefixIconConstraints))
+      ..add(DiagnosticsProperty<EdgeInsets?>("contentPadding", contentPadding))
+      ..add(DiagnosticsProperty<bool>("isDense", isDense))
+      ..add(DiagnosticsProperty<GlobalKey<FormFieldState<String>>?>("fieldKey", fieldKey))
+      ..add(StringProperty("initialValue", initialValue))
+      ..add(ObjectFlagProperty<FormFieldValidator<String>?>.has("validator", validator))
+      ..add(ObjectFlagProperty<FormFieldSetter<String>?>.has("onSaved", onSaved))
+      ..add(ObjectFlagProperty<ValueChanged<String>?>.has("onFieldSubmitted", onFieldSubmitted))
+      ..add(ObjectFlagProperty<ValueChanged<String>?>.has("onEditingEnd", onEditingEnd))
+      ..add(ObjectFlagProperty<ValueChanged<bool>?>.has("onFocusChange", onFocusChange));
   }
 }
 
@@ -163,7 +163,7 @@ class AppTextFormFieldState<T extends AppTextFormField> extends State<T> with Ap
       onChanged: onFieldChange,
       onTap: onTap,
       decoration: buildDecoration(context),
-      obscuringCharacter: '*',
+      obscuringCharacter: "*",
       cursorColor: colorScheme.onBackground,
       showCursor: widget.showCursor,
       style: widget.style,
@@ -218,7 +218,7 @@ class AppTextFormFieldState<T extends AppTextFormField> extends State<T> with Ap
       suffix: widget.suffix,
       suffixIcon: widget.suffixIcon,
       contentPadding: widget.contentPadding,
-      counterText: '',
+      counterText: "",
       filled: true,
       isDense: widget.isDense,
       suffixIconConstraints: widget.suffixIconConstraints,
@@ -235,7 +235,7 @@ class AppTextFormFieldState<T extends AppTextFormField> extends State<T> with Ap
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<bool>('obscureText', obscureText));
+    properties.add(DiagnosticsProperty<bool>("obscureText", obscureText));
   }
 }
 
@@ -304,7 +304,7 @@ mixin AppTextFormFieldHandle<T extends AppTextFormField> on State<T> {
         _debounce!.cancel();
       }
       _debounce = Timer(AppParams.delayInputEnd, () {
-        widget.onEditingEnd!(fieldState?.value ?? '');
+        widget.onEditingEnd!(fieldState?.value ?? "");
       });
     }
   }

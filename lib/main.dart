@@ -1,9 +1,9 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/widgets.dart';
+import "package:flutter/widgets.dart";
 
-import 'core/utils/log_utils.dart';
-import 'module/app/app.dart';
+import "core/utils/log_utils.dart";
+import "module/app/app.dart";
 
 void main() async {
   await runZonedGuarded(() async {

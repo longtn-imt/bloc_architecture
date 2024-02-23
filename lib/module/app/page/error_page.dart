@@ -1,11 +1,14 @@
-import 'package:flutter/material.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter/material.dart";
 
-import '../../../core/extension/context_extension.dart';
+import "../../../core/extension/context_extension.dart";
 
 /// Base error page, show this page if your page get error
 class AppErrorPage extends StatelessWidget {
+  /// Create an AppErrorPage
   const AppErrorPage(this.errorDetails, {super.key});
 
+  /// Class for information provided to [FlutterExceptionHandler] callbacks.
   final FlutterErrorDetails errorDetails;
 
   @override
@@ -24,21 +27,39 @@ class AppErrorPage extends StatelessWidget {
   static String _stringify(Object? exception) {
     try {
       return exception.toString();
-    } catch (_) {}
-    return 'Error';
+    } on Object catch (_) {}
+    return "Error";
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<FlutterErrorDetails>("errorDetails", errorDetails));
   }
 }
 
 /// Base error widget, show this widget if your widget go wrong
 /// Something likes wrong image path, loading fail......
 class AppErrorrWidget extends StatelessWidget {
+  /// Create an AppErrorrWidget
   const AppErrorrWidget(this.errorDetails, {super.key, this.widget});
 
+  /// Class for information provided to [FlutterExceptionHandler] callbacks.
   final FlutterErrorDetails errorDetails;
+
+  /// Get name Widget error
   final Widget? widget;
 
   @override
   Widget build(BuildContext context) {
     return Placeholder(child: Icon(Icons.bug_report, color: context.colorScheme.error, size: 50));
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty<FlutterErrorDetails>("errorDetails", errorDetails))
+      ..add(DiagnosticsProperty<Widget?>("widget", widget));
   }
 }

@@ -1,6 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'app_pagination.freezed.dart';
+part "app_pagination.freezed.dart";
 
 /// Model data for Pagination
 @freezed

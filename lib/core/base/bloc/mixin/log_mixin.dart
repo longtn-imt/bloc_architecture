@@ -1,4 +1,4 @@
-import '../../../utils/log_utils.dart';
+import "../../../utils/log_utils.dart";
 
 /// Common function Log
 mixin LogMixin on Object {

@@ -1,11 +1,35 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import "package:hydrated_bloc/hydrated_bloc.dart";
 
-import '../base_page_state.dart';
-import 'mixin/event_transformer_mixin.dart';
-import 'mixin/log_mixin.dart';
-import 'status/status_cubit.dart';
+import "mixin/event_transformer_mixin.dart";
+import "mixin/log_mixin.dart";
+import "status/status_cubit.dart";
+
+/// Specialized [BaseBloc] which handles initializing the [BaseBloc] state
+/// based on the persisted state. This allows state to be persisted
+/// across hot restarts as well as complete app restarts.
+abstract class HydratedBaseBloc<Event, State> extends BaseBloc<Event, State> with HydratedMixin<State> {
+  /// Creates a BaseBloc
+  HydratedBaseBloc(super.initialState) {
+    hydrate();
+  }
+
+  static Storage? _storage;
+
+  /// Setter for instance of [Storage] which will be used to
+  /// manage persisting/restoring the [Bloc] state.
+  static set storage(Storage? storage) => _storage = storage;
+
+  /// Instance of [Storage] which will be used to
+  /// manage persisting/restoring the [Bloc] state.
+  static Storage get storage {
+    if (_storage == null) {
+      throw const StorageNotFound();
+    }
+    return _storage!;
+  }
+}
 
 /// Base config bloc for app
 ///
@@ -25,16 +49,13 @@ abstract class BaseBlocDelegate<E, S> extends Bloc<E, S> with LogMixin {
   StatusCubit get statusCubit => _statusCubit ??= StatusCubit();
   StatusCubit? _statusCubit;
 
-  /// Auto close bloc when [BasePageState] remove memory
-  bool get autoClose => true;
-
   /// Notifies the [Bloc] of a new [event] which triggers all corresponding [EventHandler] instances.
   @override
   void add(E event) {
     if (!isClosed) {
       super.add(event);
     } else {
-      logE('Cannot add new event $event because $runtimeType was closed');
+      logE("Cannot add new event $event because $runtimeType was closed");
     }
   }
 

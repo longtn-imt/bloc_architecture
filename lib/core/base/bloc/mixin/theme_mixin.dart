@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import "package:flutter/material.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
-import '../../../extension/extenstion.dart';
-import '../../../theme/theme.dart';
+import "../../../extension/extenstion.dart";
+import "../../../theme/theme.dart";
 
 /// Common find class theme
 mixin ThemeMixin<T extends StatefulWidget> on State<T> {

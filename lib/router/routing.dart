@@ -1,4 +1,4 @@
-part of 'router.dart';
+part of "router.dart";
 
 /// Key for state for a [Navigator] widget.
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey();

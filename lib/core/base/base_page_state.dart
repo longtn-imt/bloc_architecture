@@ -1,12 +1,12 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:get_it/get_it.dart";
 
-import 'bloc/base_bloc.dart';
-import 'bloc/mixin/log_mixin.dart';
-import 'bloc/mixin/theme_mixin.dart';
-import 'bloc/status/status_cubit.dart';
+import "bloc/base_bloc.dart";
+import "bloc/mixin/log_mixin.dart";
+import "bloc/mixin/theme_mixin.dart";
+import "bloc/status/status_cubit.dart";
 
 /// Base config for StatefulWidget
 ///
@@ -38,21 +38,13 @@ abstract class BasePageStateDelegate<W extends StatefulWidget, B extends BaseBlo
   /// Get status of page (Loading, success,..)
   StatusState get status => bloc.statusCubit.state;
 
-  /// Auto close bloc when [BasePageState] remove memory
-  bool get autoClose => true;
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: (autoClose && bloc.autoClose)
-          ? <BlocProvider<dynamic>>[
-              BlocProvider<B>(create: (_) => bloc),
-              BlocProvider<StatusCubit>(create: (_) => bloc.statusCubit),
-            ]
-          : <BlocProvider<dynamic>>[
-              BlocProvider<B>.value(value: bloc),
-              BlocProvider<StatusCubit>.value(value: bloc.statusCubit),
-            ],
+      providers: <BlocProvider<dynamic>>[
+        BlocProvider<B>(create: (_) => bloc),
+        BlocProvider<StatusCubit>(create: (_) => bloc.statusCubit),
+      ],
       child: BlocConsumer<StatusCubit, StatusState>(
         bloc: bloc.statusCubit,
         listenWhen: handleListenWhen,
@@ -97,8 +89,7 @@ abstract class BasePageStateDelegate<W extends StatefulWidget, B extends BaseBlo
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty<StatusState>('status', status))
-      ..add(DiagnosticsProperty<bool>('autoClose', autoClose))
-      ..add(DiagnosticsProperty<B>('bloc', bloc));
+      ..add(DiagnosticsProperty<StatusState>("status", status))
+      ..add(DiagnosticsProperty<B>("bloc", bloc));
   }
 }

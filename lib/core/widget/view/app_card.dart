@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, avoid_multiple_declarations_per_line, diagnostic_describe_all_properties
 
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../theme/theme.dart';
+import "../../theme/theme.dart";
 
 class AppCard extends StatelessWidget {
   const AppCard({

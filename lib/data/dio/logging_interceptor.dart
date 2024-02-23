@@ -1,8 +1,8 @@
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:dio/dio.dart';
+import "package:dio/dio.dart";
 
-import '../../core/utils/log_utils.dart';
+import "../../core/utils/log_utils.dart";
 
 /// [LoggingInterceptor] is used to print logs during network requests.
 /// It should be the last interceptor added, otherwise modifications by
@@ -15,17 +15,17 @@ class LoggingInterceptor extends Interceptor {
 
     _printHeader(title: httpMethod, text: options.uri.toString());
 
-    _printBody('Headers:');
-    options.headers.forEach((String k, Object? v) => _printBody('\t$k: $v'));
+    _printBody("Headers:");
+    options.headers.forEach((String k, Object? v) => _printBody("\t$k: $v"));
 
     if (options.queryParameters.isNotEmpty) {
-      _printBody('QueryParameters:');
-      options.queryParameters.forEach((String k, Object? v) => _printBody('\t$k: $v'));
+      _printBody("QueryParameters:");
+      options.queryParameters.forEach((String k, Object? v) => _printBody("\t$k: $v"));
     }
 
     if (options.data is Map || options.data is Iterable) {
-      _printBody('Body:');
-      _printBody('\t${_getBody(options.data)}');
+      _printBody("Body:");
+      _printBody("\t${_getBody(options.data)}");
     }
 
     _printFooter(title: httpMethod);
@@ -39,14 +39,14 @@ class LoggingInterceptor extends Interceptor {
     final String httpMethod = options.method;
 
     _printHeader(
-      title: '$httpMethod ❱➤ ${response.statusCode} ${response.statusMessage}',
+      title: "$httpMethod ❱➤ ${response.statusCode} ${response.statusMessage}",
       text: options.uri.toString(),
       type: 1,
     );
 
     if (response.data is Map || response.data is Iterable) {
-      _printBody('Response:', type: 1);
-      _printBody('\t${_getBody(response.data)}', type: 1);
+      _printBody("Response:", type: 1);
+      _printBody("\t${_getBody(response.data)}", type: 1);
     }
     _printFooter(title: httpMethod, type: 1);
 
@@ -59,13 +59,13 @@ class LoggingInterceptor extends Interceptor {
     final String httpMethod = options.method;
 
     _printHeader(
-      title: '$httpMethod ❱➤ ${err.response?.statusCode} ${err.response?.statusMessage}',
+      title: "$httpMethod ❱➤ ${err.response?.statusCode} ${err.response?.statusMessage}",
       text: options.uri.toString(),
       type: 2,
     );
 
     if (err.response?.data is Map || err.response?.data is Iterable) {
-      _printBody('Response:', type: 2);
+      _printBody("Response:", type: 2);
 
       _logPrint(LogUntils.prettyJson(err.response?.data), type: 2);
     }
@@ -75,7 +75,7 @@ class LoggingInterceptor extends Interceptor {
     try {
       _logPrint(cURLRepresentation(err.requestOptions), type: 3);
     } on Object catch (_) {
-      _logPrint('Unable to create a CURL representation of the errored', type: 3);
+      _logPrint("Unable to create a CURL representation of the errored", type: 3);
     }
 
     return super.onError(err, handler);
@@ -85,30 +85,30 @@ class LoggingInterceptor extends Interceptor {
 void _logPrint(String message, {int type = 0}) {
   switch (type) {
     case 0:
-      LogUntils.log('\x1B[33m$message', name: 'Dio');
+      LogUntils.log("\x1B[33m$message", name: "Dio");
 
     case 1:
-      LogUntils.log('\x1B[32m$message', name: 'Dio');
+      LogUntils.log("\x1B[32m$message", name: "Dio");
 
     case 2:
-      LogUntils.log('\x1B[31m$message', name: 'Dio');
+      LogUntils.log("\x1B[31m$message", name: "Dio");
 
     default:
-      LogUntils.log(message, name: 'Dio');
+      LogUntils.log(message, name: "Dio");
   }
 }
 
 void _printHeader({String? title, String? text, int type = 0}) {
-  _logPrint('╔╣ $title', type: type);
-  _logPrint('║ $text', type: type);
+  _logPrint("╔╣ $title", type: type);
+  _logPrint("║ $text", type: type);
 }
 
 void _printBody(String? content, {int type = 0}) {
-  _logPrint('║ $content', type: type);
+  _logPrint("║ $content", type: type);
 }
 
 void _printFooter({String? title, int type = 0}) {
-  _logPrint('╚═ END $title', type: type);
+  _logPrint("╚═ END $title", type: type);
 }
 
 String? _getBody(Object? data) {
@@ -124,7 +124,7 @@ String cURLRepresentation(RequestOptions request) {
   final List<String> components = <String>["curl --request ${request.method.toUpperCase()} '${request.uri}'"];
   // Header
   request.headers.forEach((String k, Object? v) {
-    if (!k.contains('content-length')) {
+    if (!k.contains("content-length")) {
       components.add("--header '$k: $v'");
     }
   });
@@ -147,5 +147,5 @@ String cURLRepresentation(RequestOptions request) {
     components.add("--data '${_getBody(request.data)}'");
   }
 
-  return components.join(' \\\n');
+  return components.join(" \\\n");
 }

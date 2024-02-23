@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import 'fonts.gen.dart';
+import "fonts.gen.dart";
 
 /// Config default value style for App
 class AppStyles {

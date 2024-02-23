@@ -1,19 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
-import '../../core/base/bloc/app_bloc_observer.dart';
-import '../../core/config/config.dart';
-import '../../core/config/injector.dart';
-import '../../core/extension/extenstion.dart';
-import '../../core/theme/theme.dart';
-import '../../router/router.dart';
-import 'bloc/app_bloc.dart';
-import 'page/error_page.dart';
+import "../../core/base/bloc/app_bloc_observer.dart";
+import "../../core/config/config.dart";
+import "../../core/config/injector.dart";
+import "../../core/extension/extenstion.dart";
+import "../../core/theme/theme.dart";
+import "../../router/router.dart";
+import "bloc/app_bloc.dart";
+import "page/error_page.dart";
 
-/// Creates a [MaterialApp] that uses the [GoRouter] instead of a [Navigator].
+/// Creates a [MaterialApp] that uses the [RouterConfig] instead of a [Navigator].
 class App extends StatelessWidget {
+  /// Create an App
   const App({super.key});
 
   @override
@@ -54,7 +54,7 @@ class App extends StatelessWidget {
         }
 
         if (widget == null) {
-          throw FlutterError('Widget is null');
+          throw FlutterError("Widget is null");
         }
 
         return widget;
@@ -65,10 +65,9 @@ class App extends StatelessWidget {
 
   /// Inital config, dependencies, bloc,...
   static Future<void> resolveDependencies() async {
-    configureInjection(environment: Config.environment?.name);
-
     Bloc.observer = AppBlocObserver();
-    HydratedBloc.storage = await getIt.getAsync<HydratedStorage>();
+
+    await configureInjection(environment: Config.environment?.name);
 
     return getIt.allReady();
   }
